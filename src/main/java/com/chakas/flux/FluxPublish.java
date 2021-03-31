@@ -11,9 +11,9 @@ public class FluxPublish {
                     });
         
         // replace publish with compose or transform operator to see the side-effect
-        just.publish(flux -> Flux.concat(
+        just.publish(flux -> Flux.merge(
                 flux.ofType(Integer.class).compose(integerFlux -> integerFlux.map(i -> i + 1)),
-                flux.ofType(String.class).compose(integerFlux -> integerFlux.map(i -> i.toUpperCase())),
+                flux.ofType(String.class).compose(integerFlux -> integerFlux.map(String::toUpperCase)),
                 flux.ofType(Float.class).compose(integerFlux -> integerFlux.map(i -> i))
         ))
         .subscribe(serializable -> {

@@ -51,7 +51,7 @@ class RateLimiterOperator {
     }
 }
 
-public class RateLimiterTest {
+public class FluxTransformDeferred {
     public static void main(String[] args) throws InterruptedException {
         RateLimiter rateLimiter = new RateLimiter(new AtomicInteger(5));
         Mono<Object> i_am_invoked = Mono.fromRunnable(() -> System.out.println("i am invoked")).compose(RateLimiterOperator.of(rateLimiter));
